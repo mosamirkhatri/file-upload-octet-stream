@@ -1,7 +1,8 @@
 import os, base64, uuid
-from typing import Optional
+# Library Imports
 from fastapi import APIRouter
-from pydantic import BaseModel
+# Local Imports
+from ..core.schemas import UploadChunk, UploadComplete
 
 router = APIRouter(prefix="/api")
 
@@ -9,11 +10,6 @@ router = APIRouter(prefix="/api")
 @router.get('/router-test')
 def router_test():
     return "Router Testing"
-
-class UploadChunk(BaseModel):
-    chunk: str
-    file_name: str
-    folder: Optional[str]
 
 @router.post('/upload-chunk')
 def upload_chunk(file: UploadChunk):
@@ -36,10 +32,6 @@ def upload_chunk(file: UploadChunk):
     with open(out_file, mode) as file_object:
         file_object.write(bytearray(base64.b64decode(file.chunk)))
     return {"success": True, "message": "Chunk Uploaded", "folder": folder}
-
-class UploadComplete(BaseModel):
-    file_name: str
-    folder: str
 
 @router.post('/upload-complete')
 def upload_complete(file: UploadComplete):
