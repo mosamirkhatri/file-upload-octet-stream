@@ -1,7 +1,7 @@
 import os, base64, uuid
 # Library Imports
 from fastapi import APIRouter
-# Local Imports
+# Schema Imports
 from ..core.schemas import UploadChunk, UploadComplete
 
 router = APIRouter(prefix="/api")
