@@ -1,0 +1,10 @@
+# pyc files
+__pycache__/
+
+uploads/*
+
+!uploads/.gitkeep
+
+# Virtual Env
+
+venv/
